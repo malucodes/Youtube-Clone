@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube - Justin Timberlake - What Goes Around... Comes Around</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="main-wrapper">
+    <header id="masthead">
+        <div class="logo-area">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Logo_of_YouTube_%282006-2011%29.svg" alt="YouTube Logo" width="120">
+        </div>
+        <div class="search-section">
+            <input type="text" class="search-input">
+            <button class="search-btn">Search</button>
+            <nav class="top-nav">
+                <a href="#">Browse</a> | <a href="#">Upload</a>
+            </nav>
+        </div>
+        <div class="auth-links">
+            <a href="#">Create Account</a> | <a href="#">Sign In</a>
+        </div>
+    </header>
+
+    <section class="vevo-banner">
+        <div class="vevo-brand">
+            <span class="evolution-text">MUSIC EVOLUTION REVOLUTION</span>
+            <h1 class="vevo-logo">VEVO</h1>
+        </div>
+        <div class="vevo-callout">
+            NEW MUSIC VIDEOS FROM YOUR FAVORITE ARTISTS <span class="play-arrow">▶</span>
+        </div>
+    </section>
+
+    <main class="content-box">
+        <header class="channel-header">
+            <img src="./assets/vevo.png" class="avatar-box" alt="Channel Avatar">
+            <div class="channel-meta">
+                <div class="channel-title">
+                    <span class="v-icon">V</span> <strong>VEVO</strong> 
+                    <span class="channel-type">VEVO's Channel</span>
+                </div>
+                <nav class="channel-tabs">
+                    <a href="#">All</a>
+                    <a href="#">Uploads</a>
+                    <a href="#" class="active-tab">Favorites</a>
+                </nav>
+            </div>
+            <button class="subscribe-btn">Subscribe</button>
+        </header>
+
+        <div class="layout-grid">
+            <section class="video-column">
+                <div class="player-container">
+                    <div class="video-screen">
+                        <div class="loading-icon"></div>
+                    </div>
+                </div>
+                
+                <h1 class="main-video-title">Loading...</h1>
+                <div class="video-stats">
+                    <!-- JS will populate this -->
+                </div>
+                <p class="description">
+                    <!-- JS will populate this -->
+                </p>
+                
+                <div class="video-url-box">
+                    <span class="url-label">URL</span> <input type="text" class="url-input" readonly>
+                </div>
+                
+                <div class="like-dislike-box">
+                    <button class="like-btn"><span class="like-count">0</span> Like</button>
+                    <button class="dislike-btn"><span class="dislike-count">0</span> Dislike</button>
+                </div>
+
+                
+                <div class="comments-section">
+                    <div class="comments-header">
+                        <h4>Text Comments</h4>
+                    </div>
+                    <div class="comment-input-box">
+                        <textarea class="comment-textarea" placeholder="Respond to this video..."></textarea>
+                        <button class="post-btn">Post Comment</button>
+                    </div>
+                    
+                    <div class="comment-list">
+                        <!-- Comments will be loaded via JS -->
+                    </div>
+                </div>
+            </section>
+
+            <aside class="sidebar-column">
+                <div class="sidebar-list">
+                    <!-- Sidebar items will be loaded via JS -->
+                </div>
+            </aside>
+        </div>
+    </main>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
