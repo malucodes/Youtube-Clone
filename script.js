@@ -74,37 +74,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
         videoScreen.innerHTML = '';
 
-        const videoEl = document.createElement('video');
-        videoEl.style.width = '100%';
-        videoEl.style.height = '100%';
-        videoEl.style.background = '#000';
-        videoEl.controls = true;
-        videoEl.autoplay = true;
+        const iframe = document.createElement('iframe');
+        iframe.style.width = '100%';
+        iframe.style.height = '100%';
+        iframe.src = `https://www.youtube.com/embed/${video.id}?autoplay=1&rel=0`;
+        iframe.title = "YouTube video player";
+        iframe.frameBorder = "0";
+        iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+        iframe.allowFullscreen = true;
 
-        const sourceEl = document.createElement('source');
-        sourceEl.src = `./assets/videos/${video.id}.mp4`;
-        sourceEl.type = 'video/mp4';
-
-        sourceEl.addEventListener('error', () => {
-            videoScreen.innerHTML = `
-                <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%; color: white; text-align: center;">
-                    <p style="font-size: 16px; font-weight: bold; margin-bottom: 10px;">⚠️ Vídeo não encontrado</p>
-                    <p>O sistema procurou por: <br><code style="background: #333; padding: 2px 5px;">videos/${video.id}.mp4</code></p>
-                    <p style="font-size: 12px; margin-top: 10px; color: #aaa;">Verifique se a pasta 'videos' existe e se o nome do arquivo está correto.</p>
-                </div>
-            `;
-        });
-
-        videoEl.appendChild(sourceEl);
-        videoScreen.appendChild(videoEl);
-
-        var playPromise = videoEl.play();
-        if (playPromise !== undefined) {
-            playPromise.catch(error => {
-                videoEl.muted = true;
-                videoEl.play();
-            });
-        }
+        videoScreen.appendChild(iframe);
 
         commentsHeader.textContent = `Text Comments (${video.comments.length})`;
         commentList.innerHTML = '';
