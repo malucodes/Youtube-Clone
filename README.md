@@ -8,7 +8,7 @@ Este projeto simula o layout antigo do YouTube, focado na era de ouro dos videoc
 
 ## ✨ Funcionalidades
 
-- **Reprodução de Vídeo**: Player HTML5 personalizado para rodar vídeos locais.
+- **Reprodução de Vídeo**: Player Híbrido que tenta rodar vídeos locais e usa o YouTube como fallback.
 - **Interatividade**:
   - Botões de **Like** e **Dislike** com contadores funcionais.
   - Botão de **Inscrever-se** com alternância de estado.

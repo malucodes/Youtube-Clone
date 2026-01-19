@@ -74,16 +74,48 @@ document.addEventListener("DOMContentLoaded", function() {
 
         videoScreen.innerHTML = '';
 
-        const iframe = document.createElement('iframe');
-        iframe.style.width = '100%';
-        iframe.style.height = '100%';
-        iframe.src = `https://www.youtube.com/embed/${video.id}?autoplay=1&rel=0`;
-        iframe.title = "YouTube video player";
-        iframe.frameBorder = "0";
-        iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
-        iframe.allowFullscreen = true;
+        // 1. Tentar carregar vídeo local primeiro
+        const videoEl = document.createElement('video');
+        videoEl.style.width = '100%';
+        videoEl.style.height = '100%';
+        videoEl.style.background = '#000';
+        videoEl.controls = true;
+        videoEl.autoplay = true;
 
-        videoScreen.appendChild(iframe);
+        const sourceEl = document.createElement('source');
+        sourceEl.src = `assets/videos/${video.id}.mp4`;
+        sourceEl.type = 'video/mp4';
+
+        // 2. Fallback: Se o vídeo local falhar (erro 404), carregar YouTube
+        sourceEl.addEventListener('error', () => {
+            videoScreen.innerHTML = ''; // Limpa o player local
+            
+            const iframe = document.createElement('iframe');
+            iframe.style.width = '100%';
+            iframe.style.height = '100%';
+            iframe.src = `https://www.youtube.com/embed/${video.id}?autoplay=1&rel=0`;
+            iframe.title = "YouTube video player";
+            iframe.frameBorder = "0";
+            iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+            iframe.allowFullscreen = true;
+            
+            videoScreen.appendChild(iframe);
+        });
+
+        videoEl.appendChild(sourceEl);
+        videoScreen.appendChild(videoEl);
+
+        // Tentar autoplay no vídeo local
+        const playPromise = videoEl.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                // Se falhar autoplay, tenta mudo (se o elemento ainda existir)
+                if (videoScreen.contains(videoEl)) {
+                    videoEl.muted = true;
+                    videoEl.play().catch(e => {});
+                }
+            });
+        }
 
         commentsHeader.textContent = `Text Comments (${video.comments.length})`;
         commentList.innerHTML = '';
