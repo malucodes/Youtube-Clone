@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function() {
         videoEl.autoplay = true;
 
         const sourceEl = document.createElement('source');
-        sourceEl.src = `/assets/videos/${video.id}.mp4`;
+        sourceEl.src = `./assets/videos/${video.id}.mp4`;
         sourceEl.type = 'video/mp4';
 
         sourceEl.addEventListener('error', () => {
