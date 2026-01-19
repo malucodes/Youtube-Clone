@@ -23,6 +23,7 @@ Este projeto simula o layout antigo do YouTube, focado na era de ouro dos videoc
 - HTML5
 - CSS3 (com uso de variáveis CSS)
 - JavaScript (Vanilla)
+- YouTube API
 
 ## 🎵 Créditos Musicais
 
