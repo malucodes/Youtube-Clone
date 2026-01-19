@@ -16,20 +16,20 @@ document.addEventListener("DOMContentLoaded", function() {
     let hasLiked = false, hasDisliked = false;
     let currentVideoId = null;
 
-    // Carregar dados do JSON
     fetch('data.json')
         .then(response => response.json())
         .then(data => {
-            // Renderizar Barra Lateral
             sidebarList.innerHTML = '';
             data.forEach(video => {
                 const item = document.createElement('div');
                 item.className = 'side-item';
                 item.dataset.videoId = video.id;
+                item.setAttribute('role', 'button');
+                item.setAttribute('tabindex', '0');
                 
                 item.innerHTML = `
                     <div class="thumb-box">
-                        <img src="https://i.ytimg.com/vi/${video.id}/mqdefault.jpg" alt="Thumbnail">
+                        <img src="https://i.ytimg.com/vi/${video.id}/mqdefault.jpg" alt="">
                         <span class="duration">${video.duration}</span>
                     </div>
                     <div class="side-text">
@@ -40,10 +40,16 @@ document.addEventListener("DOMContentLoaded", function() {
                 `;
                 
                 item.addEventListener('click', () => loadVideo(video));
+                
+                item.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        loadVideo(video);
+                    }
+                });
                 sidebarList.appendChild(item);
             });
 
-            // Carregar o primeiro vídeo (Justin Timberlake) por padrão
             const initialVideo = data.find(v => v.id === 'TOrnUquxtwA') || data[0];
             loadVideo(initialVideo);
         })
@@ -53,13 +59,11 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 
     function loadVideo(video) {
-        // Atualizar Informações Principais
         currentVideoId = video.id;
         mainTitle.textContent = video.title;
         videoStats.innerHTML = `From: <a href="#" class="author-link">${video.author}</a> | <span class="video-date">${video.date}</span> | <strong>${video.views}</strong>`;
         description.textContent = video.description;
         
-        // Atualizar Likes/Dislikes com dados do JSON
         currentLikes = video.likes || 0;
         currentDislikes = video.dislikes || 0;
         hasLiked = false;
@@ -68,11 +72,8 @@ document.addEventListener("DOMContentLoaded", function() {
         likeBtn.querySelector('.like-count').textContent = currentLikes.toLocaleString();
         dislikeBtn.querySelector('.dislike-count').textContent = currentDislikes.toLocaleString();
 
-        // Atualizar Player
-        // Limpar player anterior
         videoScreen.innerHTML = '';
 
-        // Criar elemento de vídeo via JS para melhor controle de erro
         const videoEl = document.createElement('video');
         videoEl.style.width = '100%';
         videoEl.style.height = '100%';
@@ -84,7 +85,6 @@ document.addEventListener("DOMContentLoaded", function() {
         sourceEl.src = `/assets/videos/${video.id}.mp4`;
         sourceEl.type = 'video/mp4';
 
-        // Tratamento de erro se o arquivo não existir
         sourceEl.addEventListener('error', () => {
             videoScreen.innerHTML = `
                 <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%; color: white; text-align: center;">
@@ -98,23 +98,20 @@ document.addEventListener("DOMContentLoaded", function() {
         videoEl.appendChild(sourceEl);
         videoScreen.appendChild(videoEl);
 
-        // Forçar o play programaticamente para garantir o autoplay
         var playPromise = videoEl.play();
         if (playPromise !== undefined) {
             playPromise.catch(error => {
-                // Navegadores bloqueiam áudio sem interação. Fallback para mudo.
                 videoEl.muted = true;
                 videoEl.play();
             });
         }
 
-        // Atualizar Comentários
         commentsHeader.textContent = `Text Comments (${video.comments.length})`;
         commentList.innerHTML = '';
         video.comments.forEach(comment => {
             const commentHtml = `
                 <div class="comment-item">
-                    <img src="${comment.profilePic}" class="comment-avatar" alt="Avatar">
+                    <img src="${comment.profilePic}" class="comment-avatar" alt="${comment.author}'s avatar">
                     <div class="comment-content">
                         <div class="comment-meta"><a href="#" class="comment-author">${comment.author}</a> <span class="comment-time">${comment.time}</span></div>
                         <p class="comment-text">${comment.text}</p>
@@ -128,24 +125,19 @@ document.addEventListener("DOMContentLoaded", function() {
             commentList.insertAdjacentHTML('beforeend', commentHtml);
         });
 
-        // Atualizar Estado Ativo na Barra Lateral
         document.querySelectorAll('.side-item').forEach(item => {
             item.classList.remove('active-video');
             if(item.dataset.videoId === video.id) item.classList.add('active-video');
         });
     }
 
-     // Like/Dislike functionality
      likeBtn.addEventListener('click', () => {
         if (hasLiked) {
-            // Se já deu like, remove o like (toggle)
             currentLikes--;
             hasLiked = false;
         } else {
-            // Se não deu like, adiciona
             currentLikes++;
             hasLiked = true;
-            // Se tinha dado dislike antes, remove o dislike
             if (hasDisliked) {
                 currentDislikes--;
                 hasDisliked = false;
@@ -157,14 +149,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     dislikeBtn.addEventListener('click', () => {
         if (hasDisliked) {
-            // Se já deu dislike, remove o dislike (toggle)
             currentDislikes--;
             hasDisliked = false;
         } else {
-            // Se não deu dislike, adiciona
             currentDislikes++;
             hasDisliked = true;
-            // Se tinha dado like antes, remove o like
             if (hasLiked) {
                 currentLikes--;
                 hasLiked = false;
@@ -174,7 +163,6 @@ document.addEventListener("DOMContentLoaded", function() {
         dislikeBtn.querySelector('.dislike-count').textContent = currentDislikes.toLocaleString();
     });
 
-    // Subscribe functionality
     subscribeBtn.addEventListener('click', () => {
         if (subscribeBtn.classList.contains('subscribed')) {
             subscribeBtn.classList.remove('subscribed');
@@ -185,7 +173,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // Share functionality
     shareBtn.addEventListener('click', () => {
         if (currentVideoId) {
             const url = `https://www.youtube.com/watch?v=${currentVideoId}`;
@@ -195,13 +182,12 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // Post Comment functionality
     postBtn.addEventListener('click', () => {
         const text = commentInput.value.trim();
         if (text) {
             const commentHtml = `
                 <div class="comment-item">
-                    <img src="https://i.pravatar.cc/150?u=You" class="comment-avatar" alt="Avatar">
+                    <img src="https://i.pravatar.cc/150?u=You" class="comment-avatar" alt="Your avatar">
                     <div class="comment-content">
                         <div class="comment-meta"><a href="#" class="comment-author">You</a> <span class="comment-time">Just now</span></div>
                         <p class="comment-text">${text}</p>
@@ -215,21 +201,17 @@ document.addEventListener("DOMContentLoaded", function() {
             commentList.insertAdjacentHTML('afterbegin', commentHtml);
             commentInput.value = '';
 
-            // Update count
             const currentCount = parseInt(commentsHeader.textContent.replace(/\D/g, '')) || 0;
             commentsHeader.textContent = `Text Comments (${currentCount + 1})`;
         }
     });
 
-    // Reply functionality (Event Delegation)
     commentList.addEventListener('click', (e) => {
-        // Toggle Reply Form
         if (e.target.classList.contains('reply-action-btn')) {
             const formContainer = e.target.nextElementSibling;
             formContainer.style.display = formContainer.style.display === 'none' ? 'block' : 'none';
         }
 
-        // Post Reply
         if (e.target.classList.contains('post-reply-btn')) {
             const btn = e.target;
             const container = btn.parentElement;
@@ -239,7 +221,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if (text) {
                 const replyHtml = `
                     <div class="comment-item reply-item">
-                        <img src="https://i.pravatar.cc/150?u=You" class="comment-avatar" style="width:30px; height:30px;" alt="Avatar">
+                        <img src="https://i.pravatar.cc/150?u=You" class="comment-avatar" style="width:30px; height:30px;" alt="Your avatar">
                         <div class="comment-content">
                             <div class="comment-meta"><a href="#" class="comment-author">You</a> <span class="comment-time">Just now</span></div>
                             <p class="comment-text">${text}</p>

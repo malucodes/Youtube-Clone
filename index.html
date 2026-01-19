@@ -14,7 +14,7 @@
             <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Logo_of_YouTube_%282006-2011%29.svg" alt="YouTube Logo" width="120">
         </div>
         <div class="search-section">
-            <input type="text" class="search-input">
+            <input type="text" class="search-input" aria-label="Search query">
             <button class="search-btn">Search</button>
             <nav class="top-nav">
                 <a href="#">Browse</a> | <a href="#">Upload</a>
@@ -37,7 +37,7 @@
 
     <main class="content-box">
         <header class="channel-header">
-            <img src="assets/images/vevo.png" class="avatar-box" alt="Channel Avatar">
+            <img src="assets/images/vevo.png" class="avatar-box" alt="VEVO Channel Avatar">
             <div class="channel-meta">
                 <div class="channel-title">
                     <span class="v-icon">V</span> <strong>VEVO</strong> 
@@ -62,10 +62,8 @@
                 
                 <h1 class="main-video-title">Loading...</h1>
                 <div class="video-stats">
-                    <!-- JS will populate this -->
                 </div>
                 <p class="description">
-                    <!-- JS will populate this -->
                 </p>
                 
                 <div class="like-dislike-box">
@@ -80,19 +78,17 @@
                         <h4>Text Comments</h4>
                     </div>
                     <div class="comment-input-box">
-                        <textarea class="comment-textarea" placeholder="Respond to this video..."></textarea>
+                        <textarea class="comment-textarea" placeholder="Respond to this video..." aria-label="Add a public comment"></textarea>
                         <button class="post-btn">Post Comment</button>
                     </div>
                     
                     <div class="comment-list">
-                        <!-- Comments will be loaded via JS -->
                     </div>
                 </div>
             </section>
 
             <aside class="sidebar-column">
                 <div class="sidebar-list">
-                    <!-- Sidebar items will be loaded via JS -->
                 </div>
             </aside>
         </div>
