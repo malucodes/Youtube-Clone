@@ -4,14 +4,17 @@ document.addEventListener("DOMContentLoaded", function() {
     const mainTitle = document.querySelector('.main-video-title');
     const videoStats = document.querySelector('.video-stats');
     const description = document.querySelector('.description');
-    const urlInput = document.querySelector('.url-input');
     const videoScreen = document.querySelector('.video-screen');
     const commentsHeader = document.querySelector('.comments-header h4');
     const likeBtn = document.querySelector('.like-btn');
     const dislikeBtn = document.querySelector('.dislike-btn');
+    const subscribeBtn = document.querySelector('.subscribe-btn');
+    const shareBtn = document.querySelector('.share-btn');
     const commentInput = document.querySelector('.comment-textarea');
     const postBtn = document.querySelector('.post-btn');
-    let likeCount = 0, dislikeCount = 0;
+    let currentLikes = 0, currentDislikes = 0;
+    let hasLiked = false, hasDisliked = false;
+    let currentVideoId = null;
 
     // Carregar dados do JSON
     fetch('data.json')
@@ -44,25 +47,66 @@ document.addEventListener("DOMContentLoaded", function() {
             const initialVideo = data.find(v => v.id === 'TOrnUquxtwA') || data[0];
             loadVideo(initialVideo);
         })
-        .catch(err => console.error("Erro ao carregar JSON. Certifique-se de usar um servidor local (Live Server).", err));
+        .catch(err => {
+            console.error("Erro ao carregar JSON.", err);
+            alert("Erro: A lista de vídeos não apareceu.\n\nSe você abriu o arquivo direto pelo Windows, o navegador bloqueia o 'data.json'.\n\nUse a extensão 'Live Server' no VS Code (botão direito no index.html -> Open with Live Server).");
+        });
 
     function loadVideo(video) {
         // Atualizar Informações Principais
+        currentVideoId = video.id;
         mainTitle.textContent = video.title;
         videoStats.innerHTML = `From: <a href="#" class="author-link">${video.author}</a> | <span class="video-date">${video.date}</span> | <strong>${video.views}</strong>`;
         description.textContent = video.description;
         
-        // Atualizar URL Box
-        urlInput.value = `https://www.youtube.com/watch?v=${video.id}`;
+        // Atualizar Likes/Dislikes com dados do JSON
+        currentLikes = video.likes || 0;
+        currentDislikes = video.dislikes || 0;
+        hasLiked = false;
+        hasDisliked = false;
         
+        likeBtn.querySelector('.like-count').textContent = currentLikes.toLocaleString();
+        dislikeBtn.querySelector('.dislike-count').textContent = currentDislikes.toLocaleString();
+
         // Atualizar Player
-        // Usar tag de vídeo HTML5 para arquivos locais MP4
-        videoScreen.innerHTML = `
-            <video width="100%" height="100%" controls autoplay style="background: #000;">
-                <source src="videos/${video.id}.mp4" type="video/mp4">
-                Seu navegador não suporta a reprodução de vídeo.
-            </video>
-        `;
+        // Limpar player anterior
+        videoScreen.innerHTML = '';
+
+        // Criar elemento de vídeo via JS para melhor controle de erro
+        const videoEl = document.createElement('video');
+        videoEl.style.width = '100%';
+        videoEl.style.height = '100%';
+        videoEl.style.background = '#000';
+        videoEl.controls = true;
+        videoEl.autoplay = true;
+
+        const sourceEl = document.createElement('source');
+        sourceEl.src = `/assets/videos/${video.id}.mp4`;
+        sourceEl.type = 'video/mp4';
+
+        // Tratamento de erro se o arquivo não existir
+        sourceEl.addEventListener('error', () => {
+            videoScreen.innerHTML = `
+                <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%; color: white; text-align: center;">
+                    <p style="font-size: 16px; font-weight: bold; margin-bottom: 10px;">⚠️ Vídeo não encontrado</p>
+                    <p>O sistema procurou por: <br><code style="background: #333; padding: 2px 5px;">videos/${video.id}.mp4</code></p>
+                    <p style="font-size: 12px; margin-top: 10px; color: #aaa;">Verifique se a pasta 'videos' existe e se o nome do arquivo está correto.</p>
+                </div>
+            `;
+        });
+
+        videoEl.appendChild(sourceEl);
+        videoScreen.appendChild(videoEl);
+
+        // Forçar o play programaticamente para garantir o autoplay
+        var playPromise = videoEl.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                // Navegadores bloqueiam áudio sem interação. Fallback para mudo.
+                videoEl.muted = true;
+                videoEl.play();
+            });
+        }
 
         // Atualizar Comentários
         commentsHeader.textContent = `Text Comments (${video.comments.length})`;
@@ -93,13 +137,62 @@ document.addEventListener("DOMContentLoaded", function() {
 
      // Like/Dislike functionality
      likeBtn.addEventListener('click', () => {
-        likeCount++;
-        likeBtn.querySelector('.like-count').textContent = likeCount;
+        if (hasLiked) {
+            // Se já deu like, remove o like (toggle)
+            currentLikes--;
+            hasLiked = false;
+        } else {
+            // Se não deu like, adiciona
+            currentLikes++;
+            hasLiked = true;
+            // Se tinha dado dislike antes, remove o dislike
+            if (hasDisliked) {
+                currentDislikes--;
+                hasDisliked = false;
+                dislikeBtn.querySelector('.dislike-count').textContent = currentDislikes.toLocaleString();
+            }
+        }
+        likeBtn.querySelector('.like-count').textContent = currentLikes.toLocaleString();
     });
 
     dislikeBtn.addEventListener('click', () => {
-        dislikeCount++;
-        dislikeBtn.querySelector('.dislike-count').textContent = dislikeCount;
+        if (hasDisliked) {
+            // Se já deu dislike, remove o dislike (toggle)
+            currentDislikes--;
+            hasDisliked = false;
+        } else {
+            // Se não deu dislike, adiciona
+            currentDislikes++;
+            hasDisliked = true;
+            // Se tinha dado like antes, remove o like
+            if (hasLiked) {
+                currentLikes--;
+                hasLiked = false;
+                likeBtn.querySelector('.like-count').textContent = currentLikes.toLocaleString();
+            }
+        }
+        dislikeBtn.querySelector('.dislike-count').textContent = currentDislikes.toLocaleString();
+    });
+
+    // Subscribe functionality
+    subscribeBtn.addEventListener('click', () => {
+        if (subscribeBtn.classList.contains('subscribed')) {
+            subscribeBtn.classList.remove('subscribed');
+            subscribeBtn.textContent = 'Subscribe';
+        } else {
+            subscribeBtn.classList.add('subscribed');
+            subscribeBtn.textContent = 'Subscribed';
+        }
+    });
+
+    // Share functionality
+    shareBtn.addEventListener('click', () => {
+        if (currentVideoId) {
+            const url = `https://www.youtube.com/watch?v=${currentVideoId}`;
+            navigator.clipboard.writeText(url).then(() => {
+                alert(`Link copiado para a área de transferência:\n${url}`);
+            }).catch(err => console.error('Erro ao copiar link', err));
+        }
     });
 
     // Post Comment functionality

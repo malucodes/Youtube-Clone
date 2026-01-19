@@ -91,6 +91,13 @@ body {
     font-weight: bold;
     border-radius: 3px;
     cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.subscribe-btn.subscribed {
+    background: linear-gradient(to bottom, #cc181e, #b31217);
+    border: 1px solid #991015;
+    color: #fff;
 }
 
 /* Layout Grid */
@@ -195,16 +202,6 @@ body {
 .footer-links { margin-top: 20px; font-weight: bold; }
 .footer-links a { color: #0033CC; text-decoration: none; }
 
-/* URL Box */
-.video-url-box {
-    margin-top: 15px;
-    background: #f1f1f1;
-    padding: 5px;
-    border: 1px solid #ccc;
-}
-.url-label { font-weight: bold; margin-right: 5px; color: #333; }
-.url-input { width: 300px; padding: 2px; border: 1px solid #999; font-size: 12px; }
-
 /* Like/Dislike */
 .like-dislike-box {
     margin-top: 15px;
@@ -212,7 +209,7 @@ body {
     gap: 10px;
 }
 
-.like-btn, .dislike-btn {
+.like-btn, .dislike-btn, .share-btn {
     background: #eee;
     border: 1px solid #ccc;
     padding: 5px 10px;
@@ -221,6 +218,17 @@ body {
 }
 
 .like-count, .dislike-count { margin-right: 3px; }
+
+.like-icon, .dislike-icon {
+    width: 14px;
+    height: 14px;
+    vertical-align: middle;
+    margin-left: 4px;
+}
+
+.dislike-icon {
+    transform: rotate(180deg);
+}
 
 /* Comments Section */
 .comments-section {

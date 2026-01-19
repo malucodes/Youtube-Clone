@@ -7,6 +7,8 @@
         "date": "February 9, 2007",
         "description": "Music video by Justin Timberlake performing What Goes Around... Comes Around. (C) 2007 Zomba Recording LLC",
         "duration": "9:22",
+        "likes": 2800000,
+        "dislikes": 85000,
         "comments": [
             { "author": "MusicLover99", "time": "1 week ago", "text": "Justin never misses! What a classic. The production on this track is timeless.", "profilePic": "https://i.pravatar.cc/150?u=MusicLover99" },
             { "author": "RetroVibes", "time": "2 days ago", "text": "I remember watching this on MTV back in the day. Bring back 2007!", "profilePic": "https://i.pravatar.cc/150?u=RetroVibes" },
@@ -14,28 +16,33 @@
         ]
     },
     {
-        "id": "P_qK6JdKj7U",
-        "title": "Jazmine Sullivan - Holding You Down (G-Mix)",
-        "author": "JazmineSullivanVEVO",
-        "views": "3,500,000 views",
-        "date": "August 30, 2010",
-        "description": "Music video by Jazmine Sullivan performing Holding You Down (G-Mix). (C) 2010 J Records",
-        "duration": "3:39",
+        "id": "0habxsuXW4g",
+        "title": "Mariah Carey - We Belong Together (Official Music Video)",
+        "author": "MariahCareyVEVO",
+        "views": "560,000,000 views",
+        "date": "June 29, 2009",
+        "description": "Music video by Mariah Carey performing We Belong Together. (C) 2005 Island Def Jam Music Group",
+        "duration": "3:25",
+        "likes": 4500000,
+        "dislikes": 120000,
         "comments": [
-            { "author": "RnBFan", "time": "1 year ago", "text": "Underrated queen! Her voice is unmatched.", "profilePic": "https://i.pravatar.cc/150?u=RnBFan" },
-            { "author": "SoulVibes", "time": "3 months ago", "text": "This beat takes me back. Love it.", "profilePic": "https://i.pravatar.cc/150?u=SoulVibes" }
+            { "author": "Lambily", "time": "2 years ago", "text": "The song of the decade!", "profilePic": "https://i.pravatar.cc/150?u=Lambily" },
+            { "author": "RnBLover", "time": "5 months ago", "text": "Her vocals are just unmatched.", "profilePic": "https://i.pravatar.cc/150?u=RnBLover" }
         ]
     },
     {
-        "id": "sO9t7JdKj7U",
-        "title": "Jared Evan - In Love With You",
-        "author": "JaredEvanVEVO",
-        "views": "1,200,000 views",
-        "date": "October 25, 2010",
-        "description": "Music video by Jared Evan performing In Love With You. (C) 2010 Zone 4/Interscope",
-        "duration": "3:34",
+        "id": "5NPBIwQyPWE",
+        "title": "Avril Lavigne - Complicated (Official Video)",
+        "author": "AvrilLavigneVEVO",
+        "views": "600,000,000 views",
+        "date": "March 9, 2010",
+        "description": "Music video by Avril Lavigne performing Complicated. (C) 2002 Arista Records, LLC",
+        "duration": "4:13",
+        "likes": 4800000,
+        "dislikes": 110000,
         "comments": [
-            { "author": "DrummerBoy", "time": "5 years ago", "text": "That drum beat is sick!", "profilePic": "https://i.pravatar.cc/150?u=DrummerBoy" }
+            { "author": "SkaterBoy123", "time": "3 years ago", "text": "Why do you have to go and make things so complicated?", "profilePic": "https://i.pravatar.cc/150?u=SkaterKid" },
+            { "author": "PopPunkFan", "time": "1 week ago", "text": "This song defined my childhood.", "profilePic": "https://i.pravatar.cc/150?u=PopPunkFan" }
         ]
     },
     {
@@ -46,6 +53,8 @@
         "date": "April 26, 2007",
         "description": "Music video by Rihanna performing Umbrella. (C) 2007 Def Jam Recordings",
         "duration": "4:14",
+        "likes": 6200000,
+        "dislikes": 180000,
         "comments": [
             { "author": "Navy4Life", "time": "2 weeks ago", "text": "Ella ella eh eh eh... iconic.", "profilePic": "https://i.pravatar.cc/150?u=Navy4Life" },
             { "author": "JayZFan", "time": "1 month ago", "text": "Best collab of the decade.", "profilePic": "https://i.pravatar.cc/150?u=JayZFan" }
@@ -59,6 +68,8 @@
         "date": "October 24, 2009",
         "description": "Music video by Usher performing Yeah!. (C) 2004 Arista Records LLC",
         "duration": "4:16",
+        "likes": 6500000,
+        "dislikes": 200000,
         "comments": [
             { "author": "ClubBanger", "time": "10 years ago", "text": "This song still plays at every party.", "profilePic": "https://i.pravatar.cc/150?u=ClubBanger" }
         ]
@@ -71,6 +82,8 @@
         "date": "November 24, 2009",
         "description": "Music video by Lady Gaga performing Bad Romance. (C) 2009 Interscope Records",
         "duration": "5:08",
+        "likes": 11000000,
+        "dislikes": 450000,
         "comments": [
             { "author": "LittleMonster", "time": "1 day ago", "text": "Rah rah ah-ah-ah! Gaga changed pop forever.", "profilePic": "https://i.pravatar.cc/150?u=LittleMonster" }
         ]
@@ -83,6 +96,8 @@
         "date": "October 26, 2009",
         "description": "Hybrid Theory 20th Anniversary Edition out now! (C) 2000 Warner Records",
         "duration": "3:38",
+        "likes": 14000000,
+        "dislikes": 300000,
         "comments": [
             { "author": "RockFan2000", "time": "3 days ago", "text": "RIP Chester. Legend.", "profilePic": "https://i.pravatar.cc/150?u=RockFan2000" },
             { "author": "NuMetalHead", "time": "1 week ago", "text": "I tried so hard and got so far...", "profilePic": "https://i.pravatar.cc/150?u=NuMetalHead" }
@@ -96,6 +111,8 @@
         "date": "October 2, 2009",
         "description": "Music video by Beyoncé performing Single Ladies (Put a Ring on It). (C) 2008 Sony Music Entertainment",
         "duration": "3:19",
+        "likes": 7500000,
+        "dislikes": 250000,
         "comments": [
             { "author": "QueenB", "time": "2 years ago", "text": "All the single ladies!", "profilePic": "https://i.pravatar.cc/150?u=QueenB" },
             { "author": "Dancer123", "time": "5 months ago", "text": "This dance is legendary.", "profilePic": "https://i.pravatar.cc/150?u=Dancer123" }
@@ -109,6 +126,8 @@
         "date": "August 2, 2010",
         "description": "Music video by OutKast performing Hey Ya!. (C) 2003 Arista Records, LLC",
         "duration": "5:53",
+        "likes": 5200000,
+        "dislikes": 130000,
         "comments": [
             { "author": "PolaroidFan", "time": "3 years ago", "text": "Shake it like a polaroid picture!", "profilePic": "https://i.pravatar.cc/150?u=PolaroidFan" },
             { "author": "HipHopHead", "time": "1 week ago", "text": "Andre 3000 is a genius.", "profilePic": "https://i.pravatar.cc/150?u=HipHopHead" }
@@ -122,6 +141,8 @@
         "date": "October 25, 2009",
         "description": "Music video by Britney Spears performing Toxic. (C) 2004 JIVE Records",
         "duration": "3:32",
+        "likes": 4900000,
+        "dislikes": 140000,
         "comments": [
             { "author": "BritneyArmy", "time": "1 day ago", "text": "It's Britney, b*tch.", "profilePic": "https://i.pravatar.cc/150?u=BritneyArmy" },
             { "author": "PopLover", "time": "6 months ago", "text": "Pop perfection.", "profilePic": "https://i.pravatar.cc/150?u=PopLover" }
@@ -135,6 +156,8 @@
         "date": "June 16, 2009",
         "description": "Music video by The Black Eyed Peas performing I Gotta Feeling. (C) 2009 Interscope Records",
         "duration": "4:52",
+        "likes": 7100000,
+        "dislikes": 190000,
         "comments": [
             { "author": "PartyRocker", "time": "4 years ago", "text": "Tonight's gonna be a good night.", "profilePic": "https://i.pravatar.cc/150?u=PartyRocker" },
             { "author": "2009Vibes", "time": "2 weeks ago", "text": "Nostalgia overload.", "profilePic": "https://i.pravatar.cc/150?u=2009Vibes" }
@@ -148,6 +171,8 @@
         "date": "August 4, 2008",
         "description": "Music video by Coldplay performing Viva La Vida. (C) 2008 EMI Records Ltd",
         "duration": "4:03",
+        "likes": 6800000,
+        "dislikes": 150000,
         "comments": [
             { "author": "KingOfPop", "time": "1 month ago", "text": "I used to rule the world...", "profilePic": "https://i.pravatar.cc/150?u=KingOfPop" },
             { "author": "MusicFanatic", "time": "5 years ago", "text": "Masterpiece.", "profilePic": "https://i.pravatar.cc/150?u=MusicFanatic" }
@@ -161,6 +186,8 @@
         "date": "June 28, 2010",
         "description": "Music video by Gorillaz performing Clint Eastwood. (C) 2001 Parlophone Records Ltd",
         "duration": "4:33",
+        "likes": 6900000,
+        "dislikes": 110000,
         "comments": [
             { "author": "SunshineBag", "time": "2 days ago", "text": "I ain't happy, I'm feeling glad.", "profilePic": "https://i.pravatar.cc/150?u=SunshineBag" },
             { "author": "VirtualBand", "time": "1 year ago", "text": "Damon Albarn is a legend.", "profilePic": "https://i.pravatar.cc/150?u=VirtualBand" }
