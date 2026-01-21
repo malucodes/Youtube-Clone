@@ -276,6 +276,7 @@ body {
     padding: 5px;
     font-family: var(--main-font);
     margin-bottom: 5px;
+    resize: none;
 }
 
 .post-btn {
